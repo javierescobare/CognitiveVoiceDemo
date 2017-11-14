@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+        xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" 
+        xmlns:tkt="clr-namespace:FormsToolkit;assembly=FormsToolkit"
+        xmlns:vm="clr-namespace:VoicePay.ViewModels.Enrollment"
+        x:Class="VoicePay.Views.Enrollment.AudioVerifyPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <tkt:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <vm:AudioVerifyViewModel />
+    </ContentPage.BindingContext>
+    
+	<ContentPage.Content>
+        <Grid BackgroundColor="{StaticResource Primary}" Padding="16,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <forms:AnimationView x:Name="MicAnimated" 
+                Animation="aispeech_mic.json" 
+                AutoPlay="true" 
+                BindingContext="{x:Reference Name=LoaderAnimated}"
+                IsVisible="{Binding Path=IsVisible, Converter={StaticResource InvertedBooleanConverter}}"
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="FillAndExpand" 
+                BackgroundColor="{StaticResource Primary}" 
+                Loop="true" />
+            
+            <forms:AnimationView x:Name="LoaderAnimated" 
+                Animation="loading_mat.json" 
+                AutoPlay="true" 
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="FillAndExpand" 
+                BackgroundColor="{StaticResource Primary}" 
+                Loop="true" />
+            
+            <StackLayout VerticalOptions="End" Grid.Row="1">
+                <Label Text="{Binding StateMessage}" 
+                    HorizontalTextAlignment="Center"
+                    TextColor="White"
+                    FontSize="26"/>
+                <Label Text="{Binding Message}" 
+                    HorizontalTextAlignment="Center" 
+                    FontFamily="{StaticResource LightFontFamily}"
+                    Margin="30" 
+                    TextColor="White"
+                    FontSize="22" />
+            </StackLayout>
+        </Grid>
+	</ContentPage.Content>
+</ContentPage>

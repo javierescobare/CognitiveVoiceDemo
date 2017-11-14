@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:vm="clr-namespace:VoicePay.ViewModels.Enrollment; assembly=VoicePay"
+    xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    x:Class="VoicePay.Views.Enrollment.WelcomePage"
+    NavigationPage.HasNavigationBar="False">
+    
+    <ContentPage.BindingContext>
+        <vm:WelcomeViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid ColumnSpacing="80">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="54" />
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <StackLayout Grid.ColumnSpan="2" VerticalOptions="StartAndExpand" Margin="24,40,24,0">
+                    <Image Source="microphone_black.png" WidthRequest="80" HeightRequest="80" />
+                    <Label Text="¡Hola! Enséñale a nuestra asistente a reconocer tu voz" FontSize="26" Margin="0,0,0,10" HorizontalTextAlignment="Center" />
+                    <Label Text="Cuando estés listo, selecciona el botón 'Iniciar' y empieza a hablar con ella." FontSize="16" Margin="0,0,0,10" HorizontalTextAlignment="Center" />
+                    <Label Text="Haciendo esto, nuestra asistente podrá identificar tu voz para autorizar tus compras dentro de la aplicación." FontSize="16" HorizontalTextAlignment="Center" />
+                </StackLayout>
+                <Button Text="Verificar" Grid.Row="1" Command="{Binding CheckAndGoVerifyCommand}" BackgroundColor="Transparent" HorizontalOptions="Start" WidthRequest="130" TextColor="{StaticResource Primary}" Margin="8"/>
+                <Button Text="Entrenar" Grid.Row="1" Grid.Column="1" Command="{Binding CheckAndGoTrainCommand}"  BackgroundColor="{StaticResource Primary}" TextColor="White" WidthRequest="130" HorizontalOptions="EndAndExpand" Margin="8" />
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+    
+</ContentPage>

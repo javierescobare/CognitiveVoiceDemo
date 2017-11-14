@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:vm="clr-namespace:VoicePay.ViewModels.Enrollment; assembly=VoicePay"
+        xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+        xmlns:tkt="clr-namespace:FormsToolkit;assembly=FormsToolkit"
+        x:Class="VoicePay.Views.Enrollment.SelectPhrasePage"
+        Title="Selección de frase">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <tkt:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <vm:SelectPhraseViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <Grid>
+            <forms:AnimationView x:Name="MyAnimationView"
+                        Animation="loading.json"
+                        AutoPlay="true"
+                        IsVisible="{Binding IsBusy}"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        Loop="true"/>
+            <ListView ItemsSource="{Binding Phrases}" 
+                      ItemTapped="Handle_ItemTapped"
+                      IsVisible="{Binding Path=IsBusy, Converter={StaticResource InvertedBooleanConverter}}">
+                <ListView.Header>
+                    <StackLayout Spacing="0" Padding="16,20,16,16">
+                        <Label Text="Escoge una frase" FontSize="20"/>
+                        <Label Text="La frase que escojas será utilizada para el siguiente paso:" />
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Text}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>           
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

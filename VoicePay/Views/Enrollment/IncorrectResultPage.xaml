@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+        xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+        x:Class="VoicePay.Views.Enrollment.IncorrectResultPage">
+	<ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <forms:AnimationView x:Name="FailAnimated" 
+                Animation="crying.json"
+                AutoPlay="true" 
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="FillAndExpand" 
+                Loop="true"/>
+            <StackLayout VerticalOptions="End">
+                <Label Text="No hemos reconocido tu voz" 
+                    HorizontalTextAlignment="Center"
+                    TextColor="{StaticResource Accent2}"
+                    FontSize="26"
+                    Margin="16,0,16,10"/>
+                <Button Text="Continuar" Clicked="Handle_Clicked" BackgroundColor="{StaticResource Accent2}" TextColor="White" />
+            </StackLayout>
+        </Grid>
+	</ContentPage.Content>
+</ContentPage>
